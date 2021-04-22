@@ -1,17 +1,16 @@
-import React, {useState} from "react"
-import {Text, SafeAreaView, Image, TouchableOpacity, StyleSheet} from "react-native"
+import React from "react"
+import { Text,
+    SafeAreaView,
+    Image, TouchableOpacity,
+    StyleSheet,
+    Dimensions
+} from "react-native"
 import colors from "../styles/colors"
 
 import wateringImg from "../assets/watering.png"
-import { Button } from "../components/Button"
 
 export function Welcome(){
-  
-  const [visible, setVisible] = useState()
-
-  function handleVisibility(){
-  }
-
+ 
   return (
     <SafeAreaView style = {styles.container}>
       <Text style = {styles.title}>
@@ -19,18 +18,26 @@ export function Welcome(){
         suas plantas {'\n'}
         de forma fácil
       </Text>
-      {
-        visible &&
-        <Image source= {wateringImg} style= {styles.image}/>
-      }
+      
+      <Image 
+        source= {wateringImg} 
+        style= {styles.image}
+        resizeMode="contain"
+      />
+     
       <Text style = {styles.subtitle}>
         Não esqueça mais de regar suas plantas. {'\n'}
         Nós cuidamos de lembrar você sempre que precisar.
       </Text>
-
-      <Button title = " > " />    
+      <TouchableOpacity 
+        activeOpacity = {0.7}
+        style = {styles.button}        
+      >
+        <Text style = {styles.buttonText}>
+          >
+        </Text>
+      </TouchableOpacity>    
       
-
     </SafeAreaView>
   )
 }
@@ -39,7 +46,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-around'
   },
   title: {
     fontSize: 32,
@@ -54,6 +61,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20, 
     textAlign: "center"
   },
+  image: {
+    height: Dimensions.get('window').width * 0.7
+  },
   button: {
     backgroundColor: colors.green,
     alignItems: "center",
@@ -62,10 +72,6 @@ const styles = StyleSheet.create({
     height: 56,
     width: 56,
     marginBottom: 10
-  },
-  image: {
-    width: 292,
-    height: 284,
   },
   buttonText: {
     color: colors.white,
