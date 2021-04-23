@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 
 import {
   View,
@@ -16,6 +16,17 @@ import colors from "../styles/colors"
 import fonts from "../styles/fonts"
 
 export function UserIdentification (){
+
+  const [isFocused, setIsFocused] = useState(false)
+
+  function handleInputBlur(){
+    setIsFocused(false)
+  } 
+  
+  function handleInputFocused(){
+    setIsFocused(true)
+  }
+
   return (
     <SafeAreaView style = {styles.container}>
       <KeyboardAvoidingView
@@ -25,6 +36,7 @@ export function UserIdentification (){
         <View style = {styles.content}>
           <View style = {styles.form}>  
             <View style ={styles.header}>
+
               <Text style = {styles.emoji}>
                   😄
               </Text>
@@ -33,10 +45,16 @@ export function UserIdentification (){
                 Como podemos 
                 {"\n"}chamar você?
               </Text>
-            </View>       
+            </View>    
+
             <TextInput 
-              style= {styles.input}
+              style= {[
+                styles.input,
+                isFocused && {borderColor: colors.green}
+              ]}
               placeholder = "Digite um nome"
+              onBlur = {handleInputBlur }
+              onFocus = {handleInputFocused}
             >
             </TextInput>
             <View style = {styles.footer}>
