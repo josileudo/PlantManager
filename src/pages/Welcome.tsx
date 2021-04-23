@@ -18,8 +18,7 @@ export function Welcome(){
   return (
     <SafeAreaView style = {styles.container}>
       <View style = {styles.wrapper}>
-
-        
+      
         <Text style = {styles.title}>
           Gerencie {'\n'}
           suas plantas de {'\n'}
