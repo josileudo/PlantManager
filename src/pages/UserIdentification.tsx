@@ -18,13 +18,21 @@ import fonts from "../styles/fonts"
 export function UserIdentification (){
 
   const [isFocused, setIsFocused] = useState(false)
+  const [isFilled, setIsFilled] = useState(false)
+  const [name, setName] = useState<String>() 
 
   function handleInputBlur(){
     setIsFocused(false)
+    setIsFilled(!!name)
   } 
   
   function handleInputFocused(){
     setIsFocused(true)
+  }
+
+  function handleInputChange(value: string){
+    setIsFilled(!!value)
+    setName(value)
   }
 
   return (
@@ -50,11 +58,12 @@ export function UserIdentification (){
             <TextInput 
               style= {[
                 styles.input,
-                isFocused && {borderColor: colors.green}
+                (isFocused || isFilled) && {borderColor: colors.green}
               ]}
               placeholder = "Digite um nome"
               onBlur = {handleInputBlur }
               onFocus = {handleInputFocused}
+              onChangeText = {handleInputChange}
             >
             </TextInput>
             <View style = {styles.footer}>
