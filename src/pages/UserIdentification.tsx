@@ -18,18 +18,22 @@ import fonts from "../styles/fonts"
 export function UserIdentification (){
   return (
     <SafeAreaView style = {styles.container}>
-      <KeyboardAvoidingView>
+      <KeyboardAvoidingView
+        style = {styles.container}
+        behavior = {Platform.OS === "ios" ? "padding" : "height" }
+      >
         <View style = {styles.content}>
           <View style = {styles.form}>  
-            <Text style = {styles.emoji}>
-              😄
-            </Text>
+            <View style ={styles.header}>
+              <Text style = {styles.emoji}>
+                  😄
+              </Text>
 
-            <Text style = {styles.title}>
-              Como podemos 
-              {"\n"}chamar você?
-            </Text>
-
+              <Text style = {styles.title}>
+                Como podemos 
+                {"\n"}chamar você?
+              </Text>
+            </View>       
             <TextInput 
               style= {styles.input}
               placeholder = "Digite um nome"
@@ -61,6 +65,9 @@ const styles = StyleSheet.create ({
     justifyContent: "center",
     paddingHorizontal: 54,
     alignItems: "center"
+  },
+  header: {
+    alignItems:"center"
   },
   emoji: {
     fontSize: 44,
